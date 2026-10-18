@@ -165,9 +165,3 @@ Crow's Foot (text): `||` = exactly one, `o{` = zero or many, `|{` = one or many.
 | reviews.book_id / customer_id | books, customers | CASCADE | CASCADE | Reviews depend on both |
 
 ---
-
-## 4. 3NF Example (to point at in the video)
-
-**Publisher information.** If `books` stored `publisher_name`, `publisher_address` and `publisher_website`, then those would depend on `publisher_id` (a non-key column), which is a **transitive dependency** `book_id → publisher_id → publisher_address`. The design removes this by moving publisher data into `publishers` and keeping only the FK `books.publisher_id`.
-
-**Junction tables.** `book_authors` has composite PK `(book_id, author_id)`. Its only extra column, `author_order`, depends on the **whole** key, so there is no partial dependency (2NF).
